@@ -42,13 +42,8 @@
       <p>Silakan pilih nama penerima THR yang ingin Anda berikan:</p>
       <div class="dropdown">
         <select id="recipientList">
-          <option value="">-----</option>
+            <option value="dafidPalevi">-----</option>
           <option value="dafidPalevi">Dafid SEO</option>
-          <option value="rezhaPohan">Rezha Pohan</option>
-          <option value="masAri">Mas Ari</option>
-          <option value="jonBusri">Jon Busri</option>
-          <option value="pandy">Pandy</option>
-          <option value="fadlan">Fadlan</option>
         </select>
       </div>
     </div>
@@ -67,6 +62,46 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    function showPaymentMethod(selectedRecipient) {
+      const paymentButtons = document.getElementById('paymentButtons');
+      paymentButtons.innerHTML = '';
+
+      switch (selectedRecipient) {
+        case 'dafidPalevi':
+          createPaymentButton('Dana', '0895638066066');
+          createPaymentButton('OVO', 'Nomor OVO');
+          createPaymentButton('BNI', 'Nomor BNI');
+          createPaymentButton('BRI', 'Nomor BRI');
+          createPaymentButton('BCA', 'Nomor BRI');
+          createPaymentButton('MANDIRI', 'Nomor BRI');
+          break;
+        
+        default:
+          break;
+      }
+
+      // Tampilkan section pembayaran
+      paymentMethodSection.style.display = 'block';
+    }
+
+    function createPaymentButton(method, number) {
+      const button = document.createElement('button');
+      button.textContent = method;
+      button.addEventListener('click', () => {
+        alert(`Lakukan pembayaran melalui ${method} dengan nomor ${number}`);
+      });
+      paymentButtons.appendChild(button);
+    }
+
+    // Ambil dropdown daftar penerima THR
+    const recipientDropdown = document.getElementById('recipientList');
+
+    // Tambahkan event listener ketika pilihan pada dropdown diubah
+    recipientDropdown.addEventListener('change', () => {
+      const selectedRecipient = recipientDropdown.value;
+      showPaymentMethod(selectedRecipient);
+    });
+  </script>
 </body>
 </html>
