@@ -105,22 +105,22 @@
       button.addEventListener('click', () => {
         if (method.toLowerCase() === 'dana') {
           // Redirect to Dana application
-          window.location.href = 'https://dana.com/payment?amount=' + number; // Adjust URL as needed
+          window.location.href = `https://dana.com/payment?to=${number}&amount=0`; // Adjust URL as needed
         } else if (method.toLowerCase() === 'ovo') {
           // Redirect to OVO application
-          window.location.href = 'https://ovo.com/payment?amount=' + number; // Adjust URL as needed
+          window.location.href = `https://ovo.com/payment?to=${number}&amount=0`; // Adjust URL as needed
         } else if (method.toLowerCase() === 'bni') {
           // Redirect to BNI application
-          window.location.href = 'https://bni.com/payment?amount=' + number; // Adjust URL as needed
+          window.location.href = `https://bni.com/payment?to=${number}&amount=0`; // Adjust URL as needed
         } else if (method.toLowerCase() === 'bri') {
           // Redirect to BRI application
-          window.location.href = 'https://bri.com/payment?amount=' + number; // Adjust URL as needed
+          window.location.href = `https://bri.com/payment?to=${number}&amount=0`; // Adjust URL as needed
         } else if (method.toLowerCase() === 'bca') {
           // Redirect to BCA application
-          window.location.href = 'https://bca.com/payment?amount=' + number; // Adjust URL as needed
+          window.location.href = `https://bca.com/payment?to=${number}&amount=0`; // Adjust URL as needed
         } else if (method.toLowerCase() === 'mandiri') {
           // Redirect to Mandiri application
-          window.location.href = 'https://mandiri.com/payment?amount=' + number; // Adjust URL as needed
+          window.location.href = `https://mandiri.com/payment?to=${number}&amount=0`; // Adjust URL as needed
         } else {
           alert(`Lakukan pembayaran melalui ${method} dengan nomor ${number}`);
         }
@@ -138,6 +138,5 @@
     });
   </script>
 </body>
-</script>
-</body>
 </html>
+
