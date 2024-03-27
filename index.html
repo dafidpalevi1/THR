@@ -14,8 +14,8 @@
       <p>Silakan pilih jumlah THR yang ingin Anda berikan:</p>
       <div class="dropdown">
         <select id="thrAmount">
-            <option value="100000">Rp 100.000</option>
-            <option value="200000">Rp 200.000</option>
+          <option value="100000">Rp 100.000</option>
+          <option value="200000">Rp 200.000</option>
           <option value="300000">Rp 300.000</option>
           <option value="400000">Rp 400.000</option>
           <option value="500000">Rp 500.000</option>
@@ -42,6 +42,7 @@
       <p>Silakan pilih nama penerima THR yang ingin Anda berikan:</p>
       <div class="dropdown">
         <select id="recipientList">
+          <option value="">-----</option>
           <option value="dafidPalevi">Dafid SEO</option>
           <option value="rezhaPohan">Rezha Pohan</option>
           <option value="masAri">Mas Ari</option>
@@ -51,17 +52,11 @@
         </select>
       </div>
     </div>
-  </div>
-    
-  <div class="section">
-    <h2>Metode Pembayaran:</h2>
-    <div class="buttons payment-buttons">
-      <button id="mandiriPayment">Mandiri</button>
-      <button id="bniPayment">BNI</button>
-      <button id="briPayment">BRI</button>
-      <button id="bcaPayment">BCA</button>
-      <button id="danaPayment">Dana</button>
-      <button id="ovoPayment">OVO</button>
+
+    <div class="section" id="paymentMethodSection" style="display: none;">
+      <h2>Metode Pembayaran:</h2>
+      <div class="buttons payment-buttons" id="paymentButtons">
+      </div>
     </div>
   </div>
 
@@ -73,31 +68,76 @@
   </footer>
 
   <script>
-    // Ambil dropdown daftar penerima THR
-    const recipientDropdown = document.getElementById('recipientList');
-    let isRecipientClicked = false; // Variabel untuk melacak apakah salah satu nama penerima telah diklik
+    function showPaymentMethod(selectedRecipient) {
+      const paymentButtons = document.getElementById('paymentButtons');
+      paymentButtons.innerHTML = '';
 
-    // Tambahkan event listener ketika pilihan pada dropdown diubah
+      switch (selectedRecipient) {
+        case 'dafidPalevi':
+          createPaymentButton('Dana', '0895638066066', 'dana');
+          createPaymentButton('OVO', '0895638066066', 'ovo');
+          createPaymentButton('BNI', 'Nomor BNI', 'bni');
+          createPaymentButton('BRI', 'Nomor BRI', 'bri');
+          createPaymentButton('BCA', 'Nomor BCA', 'bca');
+          createPaymentButton('MANDIRI', '1070016980189', 'mandiri');
+          break;
+        case 'rezhaPohan':
+          createPaymentButton('Dana', '0895638066066', 'dana');
+          createPaymentButton('OVO', 'Nomor OVO', 'ovo');
+          createPaymentButton('BNI', 'Nomor BNI', 'bni');
+          createPaymentButton('BRI', 'Nomor BRI', 'bri');
+          createPaymentButton('BCA', 'Nomor BCA', 'bca');
+          createPaymentButton('MANDIRI', 'Nomor Mandiri', 'mandiri');
+          break;
+        // Add cases for other recipients as needed
+        default:
+          break;
+      }
+
+      // Display the payment method section
+      paymentMethodSection.style.display = 'block';
+    }
+
+    function createPaymentButton(method, number, id) {
+      const button = document.createElement('button');
+      button.textContent = method;
+      button.id = id + 'Payment'; // Set unique id for the button
+      button.addEventListener('click', () => {
+        if (method.toLowerCase() === 'dana') {
+          // Redirect to Dana application
+          window.location.href = 'https://dana.com/payment?amount=' + number; // Adjust URL as needed
+        } else if (method.toLowerCase() === 'ovo') {
+          // Redirect to OVO application
+          window.location.href = 'https://ovo.com/payment?amount=' + number; // Adjust URL as needed
+        } else if (method.toLowerCase() === 'bni') {
+          // Redirect to BNI application
+          window.location.href = 'https://bni.com/payment?amount=' + number; // Adjust URL as needed
+        } else if (method.toLowerCase() === 'bri') {
+          // Redirect to BRI application
+          window.location.href = 'https://bri.com/payment?amount=' + number; // Adjust URL as needed
+        } else if (method.toLowerCase() === 'bca') {
+          // Redirect to BCA application
+          window.location.href = 'https://bca.com/payment?amount=' + number; // Adjust URL as needed
+        } else if (method.toLowerCase() === 'mandiri') {
+          // Redirect to Mandiri application
+          window.location.href = 'https://mandiri.com/payment?amount=' + number; // Adjust URL as needed
+        } else {
+          alert(`Lakukan pembayaran melalui ${method} dengan nomor ${number}`);
+        }
+      });
+      paymentButtons.appendChild(button);
+    }
+
+    // Get the dropdown for THR recipients
+    const recipientDropdown = document.getElementById('recipientList');
+
+    // Add event listener when the selection in the dropdown changes
     recipientDropdown.addEventListener('change', () => {
       const selectedRecipient = recipientDropdown.value;
-      const recipientButton = document.getElementById(selectedRecipient);
-
-      // Ubah warna latar belakang tombol menjadi merah saat dipilih dari dropdown
-      recipientButton.style.backgroundColor = '#ff0000';
-
-      // Nonaktifkan semua tombol penerima THR setelah salah satu tombol diklik
-      const recipientButtons = document.querySelectorAll('.recipient');
-      recipientButtons.forEach(button => {
-        button.disabled = true;
-      });
-
-      // Tampilkan notifikasi jika pengguna mencoba mengklik nama lain setelah nama pertama diklik
-      if (isRecipientClicked) {
-        alert('Silakan klik satu nama saja');
-      } else {
-        isRecipientClicked = true;
-      }
+      showPaymentMethod(selectedRecipient);
     });
   </script>
+</body>
+</script>
 </body>
 </html>

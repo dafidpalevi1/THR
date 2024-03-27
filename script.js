@@ -1,37 +1,26 @@
-amount: amount,
+// Function untuk menampilkan metode pembayaran
+function showPaymentMethod(selectedRecipient) {
+    const paymentMethodSection = document.getElementById('paymentMethodSection');
+    paymentMethodSection.style.display = 'block';
+  }
 
-            account: bankAccountNumber,
+  // Function untuk menangani klik pada tombol pembayaran Dana
+  function handleDanaPayment() {
+    // Ganti URL sesuai dengan skema aplikasi Dana di perangkat pengguna
+    window.location.href = 'dana://payment?amount=100000&recipient=0895638066066'; // Ganti dengan nilai yang sesuai
+  }
 
-            message: message
+  // Ambil dropdown daftar penerima THR
+  const recipientDropdown = document.getElementById('recipientList');
 
-            // tambahkan parameter lain sesuai dengan dokumentasi API Mandiri
+  // Tambahkan event listener ketika pilihan pada dropdown diubah
+  recipientDropdown.addEventListener('change', () => {
+    const selectedRecipient = recipientDropdown.value;
+    showPaymentMethod(selectedRecipient);
+  });
 
-        });
+  // Ambil tombol pembayaran Dana
+  const danaPaymentButton = document.getElementById('danaPayment');
 
-        // Tanggapi hasil pembayaran
-
-        console.log('Pembayaran berhasil:', response.data);
-
-        return response.data;
-
-    } catch (error) {
-
-        console.error('Pembayaran gagal:', error.response.data);
-
-        throw error;
-
-    }
-
-}
-
-// Contoh penggunaan
-
-payWithMandiri(100000, '1070016980189', 'Pembayaran THR')
-
-    .then((paymentResult) => {
-
-        // Lakukan sesuatu dengan hasil pembayaran, misalnya tampilkan pesan sukses kepada pengguna
-
-        console.log('Pembayaran berhasil dilakukan:', paymentResult);
-
-    })
+  // Tambahkan event listener untuk klik pada tombol pembayaran Dana
+  danaPaymentButton.addEventListener('click', handleDanaPayment);
