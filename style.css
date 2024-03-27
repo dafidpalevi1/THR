@@ -1,0 +1,122 @@
+/* style.css */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .dropdown select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  .section h2, .section p {
+    text-align: center;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  /* style.css */
+  #mandiriPayment {
+    background-color: #2469a5; /* Warna latar belakang sesuai dengan yang diminta */
+    color: #fff; /* Warna teks putih */
+  }
+  
+  /* Untuk menghindari konflik dengan tombol lain, pastikan menentukan properti lainnya juga, misalnya border */
+  #mandiriPayment:hover {
+    background-color: #1a5177; /* Warna latar belakang yang sedikit lebih gelap saat tombol dihover */
+  }
+  /* style.css */
+  #ovoPayment {
+    background-color: #4c2a86; /* Warna latar belakang sesuai dengan yang diminta */
+    color: #fff; /* Warna teks putih */
+  }
+  
+  #ovoPayment:hover {
+    background-color: #39226b; /* Warna latar belakang yang sedikit lebih gelap saat tombol dihover */
+  }
+  /* style.css */
+  #bniPayment {
+    background: linear-gradient(to right, #e55300 0%, #0067 100%); /* Gradien dari #e55300 ke #0067 */
+    color: #fff; /* Warna teks putih */
+  }
+  
+  #bniPayment:hover {
+    background: linear-gradient(to right, #cc4700 0%, #005b7f 100%); /* Gradien yang sedikit lebih gelap saat dihover */
+  }
+  /* style.css */
+  #bcaPayment {
+    background-color: rgb(25, 76, 177); /* Warna latar belakang sesuai dengan yang diminta */
+    color: #fff; /* Warna teks putih */
+  }
+  
+  #bcaPayment:hover {
+    background-color: rgb(21, 64, 142); /* Warna latar belakang yang sedikit lebih gelap saat tombol dihover */
+  }
+  /* CSS */
+  .footer {
+    background: linear-gradient(to right, #007bff, #00bfff); /* Gradien biru dari kiri ke kanan */
+    padding: 20px 0; /* Padding atas dan bawah */
+    text-align: center; /* Pusatkan teks */
+    color: #fff; /* Warna teks putih */
+  }
+  
+  .footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer p {
+    margin: 5px 0; /* Beri sedikit ruang di antara setiap paragraf */
+  }
+  
+  /* Responsiveness */
+  @media (min-width: 768px) {
+    .footer .container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    
+    .footer p {
+      margin: 0; /* Hilangkan margin vertikal */
+    }
+  }
+  /* style.css */
+  #briPayment {
+    background-color: #014a94; /* Warna latar belakang sesuai permintaan */
+    color: #fff; /* Warna teks putih */
+  }
+  
+  
+  #briPayment:hover {
+    background-color: #003366; /* Warna latar belakang yang sedikit lebih gelap saat tombol dihover */
+  }
+  
