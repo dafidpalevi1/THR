@@ -42,8 +42,13 @@
       <p>Silakan pilih nama penerima THR yang ingin Anda berikan:</p>
       <div class="dropdown">
         <select id="recipientList">
-            <option value="dafidPalevi">-----</option>
+          <option value="">-----</option>
           <option value="dafidPalevi">Dafid SEO</option>
+          <option value="rezhaPohan">Rezha Pohan</option>
+          <option value="masAri">Mas Ari</option>
+          <option value="jonBusri">Jon Busri</option>
+          <option value="pandy">Pandy</option>
+          <option value="fadlan">Fadlan</option>
         </select>
       </div>
     </div>
@@ -69,35 +74,49 @@
 
       switch (selectedRecipient) {
         case 'dafidPalevi':
-          createPaymentButton('Dana', '0895638066066');
-          createPaymentButton('OVO', 'Nomor OVO');
-          createPaymentButton('BNI', 'Nomor BNI');
-          createPaymentButton('BRI', 'Nomor BRI');
-          createPaymentButton('BCA', 'Nomor BRI');
-          createPaymentButton('MANDIRI', 'Nomor BRI');
+          createPaymentButton('Dana', '0895638066066', 'dana');
+          createPaymentButton('OVO', 'Nomor OVO', 'ovo');
+          createPaymentButton('BNI', 'Nomor BNI', 'bni');
+          createPaymentButton('BRI', 'Nomor BRI', 'bri');
+          createPaymentButton('BCA', 'Nomor BCA', 'bca');
+          createPaymentButton('MANDIRI', 'Nomor Mandiri', 'mandiri');
           break;
-        
+        case 'rezhaPohan':
+          createPaymentButton('Dana', '0895638066066', 'dana');
+          createPaymentButton('OVO', 'Nomor OVO', 'ovo');
+          createPaymentButton('BNI', 'Nomor BNI', 'bni');
+          createPaymentButton('BRI', 'Nomor BRI', 'bri');
+          createPaymentButton('BCA', 'Nomor BCA', 'bca');
+          createPaymentButton('MANDIRI', 'Nomor Mandiri', 'mandiri');
+          break;
+        // Add cases for other recipients as needed
         default:
           break;
       }
 
-      // Tampilkan section pembayaran
+      // Display the payment method section
       paymentMethodSection.style.display = 'block';
     }
 
-    function createPaymentButton(method, number) {
+    function createPaymentButton(method, number, id) {
       const button = document.createElement('button');
       button.textContent = method;
+      button.id = id + 'Payment'; // Set unique id for the button
       button.addEventListener('click', () => {
-        alert(`Lakukan pembayaran melalui ${method} dengan nomor ${number}`);
+        if (method.toLowerCase() === 'dana') {
+          // Redirect to Dana application
+          window.location.href = 'https://dana.com/payment?amount=' + number; // Adjust URL as needed
+        } else {
+          alert(`Lakukan pembayaran melalui ${method} dengan nomor ${number}`);
+        }
       });
       paymentButtons.appendChild(button);
     }
 
-    // Ambil dropdown daftar penerima THR
+    // Get the dropdown for THR recipients
     const recipientDropdown = document.getElementById('recipientList');
 
-    // Tambahkan event listener ketika pilihan pada dropdown diubah
+    // Add event listener when the selection in the dropdown changes
     recipientDropdown.addEventListener('change', () => {
       const selectedRecipient = recipientDropdown.value;
       showPaymentMethod(selectedRecipient);
