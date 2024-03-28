@@ -57,6 +57,10 @@
       <h2>Metode Pembayaran:</h2>
       <div class="buttons payment-buttons" id="paymentButtons">
       </div>
+      <!-- Container to display payment details -->
+      <div id="paymentDetailsContainer"></div>
+      <!-- Tombol Kembali -->
+      <button id="backButton" style="display: none;">Kembali</button>
     </div>
   </div>
 
@@ -74,20 +78,20 @@
 
       switch (selectedRecipient) {
         case 'dafidPalevi':
-          createPaymentButton('Dana', '0895638066066', 'dana');
-          createPaymentButton('OVO', 'Nomor OVO', 'ovo');
-          createPaymentButton('BNI', 'Nomor BNI', 'bni');
-          createPaymentButton('BRI', 'Nomor BRI', 'bri');
-          createPaymentButton('BCA', 'Nomor BCA', 'bca');
-          createPaymentButton('MANDIRI', 'Nomor Mandiri', 'mandiri');
+          createPaymentButton('Dana', '0895638066066', 'dana', '0895638066066');
+          createPaymentButton('OVO', '-', 'ovo', '-');
+          createPaymentButton('BNI', 'Nomor BNI', 'bni', 'Nomor BNI');
+          createPaymentButton('BRI', 'Nomor BRI', 'bri', 'Nomor BRI');
+          createPaymentButton('BCA', 'Nomor BCA', 'bca', 'Nomor BCA');
+          createPaymentButton('MANDIRI', '1070016980189', 'mandiri', '1070016980189');
           break;
         case 'rezhaPohan':
-          createPaymentButton('Dana', '0895638066066', 'dana');
-          createPaymentButton('OVO', 'Nomor OVO', 'ovo');
-          createPaymentButton('BNI', 'Nomor BNI', 'bni');
-          createPaymentButton('BRI', 'Nomor BRI', 'bri');
-          createPaymentButton('BCA', 'Nomor BCA', 'bca');
-          createPaymentButton('MANDIRI', 'Nomor Mandiri', 'mandiri');
+          createPaymentButton('Dana', 'Nomor DANA', 'dana', 'Nomor DANA');
+          createPaymentButton('OVO', 'Nomor OVO', 'ovo', 'Nomor OVO');
+          createPaymentButton('BNI', 'Nomor BNI', 'bni', 'Nomor BNI');
+          createPaymentButton('BRI', 'Nomor BRI', 'bri', 'Nomor BRI');
+          createPaymentButton('BCA', 'Nomor BCA', 'bca', 'Nomor BCA');
+          createPaymentButton('MANDIRI', 'Nomor Mandiri', 'mandiri', 'Nomor Mandiri');
           break;
         // Add cases for other recipients as needed
         default:
@@ -96,21 +100,47 @@
 
       // Display the payment method section
       paymentMethodSection.style.display = 'block';
+      // Hide the back button initially
+      document.getElementById('backButton').style.display = 'none';
     }
 
-    function createPaymentButton(method, number, id) {
+    function createPaymentButton(method, number, id, paymentNumber) {
       const button = document.createElement('button');
       button.textContent = method;
       button.id = id + 'Payment'; // Set unique id for the button
       button.addEventListener('click', () => {
-        if (method.toLowerCase() === 'dana') {
-          // Redirect to Dana application
-          window.location.href = 'https://dana.com/payment?amount=' + number; // Adjust URL as needed
+        if (method.toLowerCase() === 'dana' || method.toLowerCase() === 'ovo' || method.toLowerCase() === 'bni' || method.toLowerCase() === 'bri' || method.toLowerCase() === 'bca') {
+          // Show payment details
+          showPaymentDetails(method, paymentNumber);
+          // Hide other payment buttons and show Dana menu button
+          document.querySelectorAll('.buttons.payment-buttons button').forEach(btn => {
+            btn.style.display = 'none';
+          });
+          document.getElementById('danaMenuButton').style.display = 'inline-block';
+          // Show the back button
+          document.getElementById('backButton').style.display = 'inline-block';
         } else {
           alert(`Lakukan pembayaran melalui ${method} dengan nomor ${number}`);
         }
       });
       paymentButtons.appendChild(button);
+
+      // Create menu button for Dana
+      if (method.toLowerCase() === 'dana') {
+        const menuButton = document.createElement('button');
+        menuButton.textContent = 'Menu Dana';
+        menuButton.id = 'danaMenuButton';
+        menuButton.style.display = 'none';
+        menuButton.addEventListener('click', () => {
+          alert('Menu Dana');
+        });
+        paymentButtons.appendChild(menuButton);
+      }
+    }
+
+    function showPaymentDetails(method, number) {
+      const paymentDetailsContainer = document.getElementById('paymentDetailsContainer');
+      paymentDetailsContainer.innerHTML = `<p>Nomor ${method}: ${number}</p>`;
     }
 
     // Get the dropdown for THR recipients
@@ -120,6 +150,20 @@
     recipientDropdown.addEventListener('change', () => {
       const selectedRecipient = recipientDropdown.value;
       showPaymentMethod(selectedRecipient);
+    });
+
+    // Add event listener for the back button
+    document.getElementById('backButton').addEventListener('click', () => {
+      // Clear payment details
+      document.getElementById('paymentDetailsContainer').innerHTML = '';
+      // Hide the back button
+      document.getElementById('backButton').style.display = 'none';
+      // Show payment buttons again
+      document.querySelectorAll('.buttons.payment-buttons button').forEach(btn => {
+        btn.style.display = 'inline-block';
+      });
+      // Hide Dana menu button
+      document.getElementById('danaMenuButton').style.display = 'none';
     });
   </script>
 </body>
