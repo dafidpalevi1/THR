@@ -61,6 +61,8 @@
       <div id="paymentDetailsContainer"></div>
       <!-- Tombol Kembali -->
       <button id="backButton" style="display: none;">Kembali</button>
+      <!-- Tombol Kirim THR -->
+      <button id="sendTHRButton" style="display: none;">Kirim THR</button>
     </div>
   </div>
 
@@ -100,8 +102,9 @@
 
       // Display the payment method section
       paymentMethodSection.style.display = 'block';
-      // Hide the back button initially
+      // Hide the back button and send THR button initially
       document.getElementById('backButton').style.display = 'none';
+      document.getElementById('sendTHRButton').style.display = 'none';
     }
 
     function createPaymentButton(method, number, id, paymentNumber) {
@@ -116,11 +119,18 @@
           document.querySelectorAll('.buttons.payment-buttons button').forEach(btn => {
             btn.style.display = 'none';
           });
-          document.getElementById('danaMenuButton').style.display = 'inline-block';
-          // Show the back button
           document.getElementById('backButton').style.display = 'inline-block';
+          document.getElementById('sendTHRButton').style.display = 'inline-block';
         } else {
-          alert(`Lakukan pembayaran melalui ${method} dengan nomor ${number}`);
+          // If it's not one of the payment methods, it's Mandiri, so display its details
+          showPaymentDetails(method, number);
+          // Show the back button and hide the send THR button
+          document.getElementById('backButton').style.display = 'inline-block';
+          document.getElementById('sendTHRButton').style.display = 'inline-block';
+          // Hide other payment buttons
+          document.querySelectorAll('.buttons.payment-buttons button').forEach(btn => {
+            btn.style.display = 'none';
+          });
         }
       });
       paymentButtons.appendChild(button);
@@ -156,14 +166,20 @@
     document.getElementById('backButton').addEventListener('click', () => {
       // Clear payment details
       document.getElementById('paymentDetailsContainer').innerHTML = '';
-      // Hide the back button
+      // Hide the back button and send THR button
       document.getElementById('backButton').style.display = 'none';
+      document.getElementById('sendTHRButton').style.display = 'none';
       // Show payment buttons again
       document.querySelectorAll('.buttons.payment-buttons button').forEach(btn => {
         btn.style.display = 'inline-block';
       });
       // Hide Dana menu button
       document.getElementById('danaMenuButton').style.display = 'none';
+    });
+
+    // Add event listener for the send THR button
+    document.getElementById('sendTHRButton').addEventListener('click', () => {
+      alert('THR telah berhasil dikirim!');
     });
   </script>
 </body>
