@@ -1,5 +1,13 @@
 /* style.css */
 
+/* Penyertaan warna putih untuk semua elemen teks */
+body,
+h1,
+p,
+button {
+  color: #fff;
+}
+
 :root {
   --gradient: linear-gradient(90deg, rgba(0,123,255,1) 21%, rgba(0,191,255,1) 58%);
 }
@@ -60,7 +68,6 @@ h1 {
 
 
 .wrapper .text {
-  color: #fff;
   font-size: 60px;
   font-weight: 400;
 }
@@ -74,7 +81,6 @@ h1 {
 
 .dynamic-text li {
   list-style: none;
-  color: #ffc711;
   font-size: 60px;
   font-weight: 500;
   position: relative;
@@ -123,7 +129,6 @@ h1 {
 
 button {
   background-color: #0004ff; /* Pertahankan warna tombol yang sudah ditentukan sebelumnya */
-  color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -139,7 +144,6 @@ button:hover {
 /* Warna untuk metode pembayaran */
 #mandiriPayment {
   background-color: #2469a5; /* Warna latar belakang sesuai dengan yang diminta */
-  color: #fff; /* Warna teks putih */
 }
 
 #mandiriPayment:hover {
@@ -148,7 +152,6 @@ button:hover {
 
 #ovoPayment {
   background-color: #4c2a86; /* Warna latar belakang sesuai dengan yang diminta */
-  color: #fff; /* Warna teks putih */
 }
 
 #ovoPayment:hover {
@@ -157,7 +160,6 @@ button:hover {
 
 #bniPayment {
   background: linear-gradient(to right, #e55300 0%, #0067 100%); /* Gradien dari #e55300 ke #0067 */
-  color: #fff; /* Warna teks putih */
 }
 
 #bniPayment:hover {
@@ -166,7 +168,6 @@ button:hover {
 
 #bcaPayment {
   background-color: rgb(25, 76, 177); /* Warna latar belakang sesuai dengan yang diminta */
-  color: #fff; /* Warna teks putih */
 }
 
 #bcaPayment:hover {
@@ -175,7 +176,6 @@ button:hover {
 
 #briPayment {
   background-color: #014a94; /* Warna latar belakang sesuai permintaan */
-  color: #fff; /* Warna teks putih */
 }
 
 #briPayment:hover {
@@ -186,7 +186,6 @@ button:hover {
   background: linear-gradient(to right, #0400ff9a, #001aff);
   padding: 20px 0;
   text-align: center;
-  color: #fff;
 }
 
 .footer .container {
