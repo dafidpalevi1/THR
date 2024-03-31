@@ -1,5 +1,93 @@
 /* style.css */
 
+:root {
+  --gradient: linear-gradient(90deg, rgba(0,123,255,1) 21%, rgba(0,191,255,1) 58%);
+}
+
+body {
+  min-height: 100vh;
+  background-color: #eaeaea;
+  background-image: var(--gradient);
+  background-size: 200%;
+  animation: gradient-animation 5s infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+/* Kode CSS responsif untuk tampilan desktop */
+
+/* Animasi typing */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Animasi cursor berkedip */
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #fff;
+  }
+}
+
+h1 {
+  overflow: hidden; /* Mencegah teks terpotong saat animasi */
+  border-right: .15em solid #fff; /* Efek cursor */
+  white-space: nowrap; /* Mencegah teks wrapping */
+  margin: 0 auto; /* Menengahkan teks */
+  animation: typing 4s steps(40) 1s 1 normal both, blink-caret .75s step-end infinite;
+}
+
+/* Kode CSS responsif untuk tampilan perangkat seluler (hp) */
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 24px; /* Ukuran font yang lebih kecil untuk perangkat seluler */
+  }
+}
+
+
+.wrapper .text {
+  color: #fff;
+  font-size: 60px;
+  font-weight: 400;
+}
+
+.wrapper .dynamic-text {
+  margin-left: 15px;
+  height: 90px;
+  line-height: 90px;
+  overflow: hidden;
+}
+
+.dynamic-text li {
+  list-style: none;
+  color: #ffc711;
+  font-size: 60px;
+  font-weight: 500;
+  position: relative;
+  top: 0;
+  animation: slide 12s steps(4) infinite;
+}
+
+@keyframes slide {
+  100% {
+    top: 360px;
+  }
+}
+
 .container {
   max-width: 90%; /* Menggunakan maksimum 90% lebar layar */
   margin: 0 auto;
@@ -34,7 +122,7 @@
 }
 
 button {
-  background-color: #007bff; /* Pertahankan warna tombol yang sudah ditentukan sebelumnya */
+  background-color: #0004ff; /* Pertahankan warna tombol yang sudah ditentukan sebelumnya */
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -95,7 +183,7 @@ button:hover {
 }
 
 .footer {
-  background: linear-gradient(to right, #007bff, #00bfff);
+  background: linear-gradient(to right, #0400ff9a, #001aff);
   padding: 20px 0;
   text-align: center;
   color: #fff;
