@@ -2,7 +2,7 @@
 
 /* Penyertaan warna putih untuk semua elemen teks */
 body,
-h1,
+h1, h2,
 p,
 button {
   color: #fff;
@@ -51,12 +51,13 @@ body {
   }
 }
 
-h1 {
+h1, h2 {
   overflow: hidden; /* Mencegah teks terpotong saat animasi */
-  border-right: .15em solid #fff; /* Efek cursor */
+  border-right: .15em solid rgb(255, 255, 255); /* Efek cursor */
   white-space: nowrap; /* Mencegah teks wrapping */
   margin: 0 auto; /* Menengahkan teks */
   animation: typing 4s steps(40) 1s 1 normal both, blink-caret .75s step-end infinite;
+  color: #ffee00;
 }
 
 /* Kode CSS responsif untuk tampilan perangkat seluler (hp) */

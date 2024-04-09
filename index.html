@@ -9,36 +9,7 @@
 <body>
   <div class="container">
     <h1>Daftar Nama Penerima <br> THR 2024</h1>
-    
-    <div class="section">
-      <p>Silakan pilih jumlah THR yang ingin Anda berikan:</p>
-      <div class="dropdown">
-        <select id="thrAmount">
-          <option value="100000">Rp 100.000</option>
-          <option value="200000">Rp 200.000</option>
-          <option value="300000">Rp 300.000</option>
-          <option value="400000">Rp 400.000</option>
-          <option value="500000">Rp 500.000</option>
-          <option value="600000">Rp 600.000</option>
-          <option value="700000">Rp 700.000</option>
-          <option value="800000">Rp 800.000</option>
-          <option value="900000">Rp 900.000</option>
-          <option value="1000000">Rp 1.000.000</option>
-          <option value="2000000">Rp 2.000.000</option>
-          <option value="3000000">Rp 3.000.000</option>
-          <option value="4000000">Rp 4.000.000</option>
-          <option value="5000000">Rp 5.000.000</option>
-          <option value="6000000">Rp 6.000.000</option>
-          <option value="7000000">Rp 7.000.000</option>
-          <option value="8000000">Rp 8.000.000</option>
-          <option value="9000000">Rp 9.000.000</option>
-          <option value="10000000">Rp 10.000.000</option>
-        </select>
-      </div>
-    </div>
 
-    
-    
     <div class="section">
       <h2>Nama Penerima THR</h2>
       <p>Silakan pilih nama penerima THR yang ingin Anda berikan:</p>
@@ -53,11 +24,6 @@
           <option value="fadlan">Fadlan</option>
         </select>
       </div>
-    </div>
-
-    <div class="section">
-      <h2>Terimakasih!!!</h2>
-      <p>Kami Ucapkan Terimakasih Banyak Atas THR Yang Telah Diberikan Kepada Kami Semua, Semoga Allah Membalas Semua Kebaikan Serta Menambah Rezeki Kalian.</p>
     </div>
 
     <div class="section" id="paymentMethodSection" style="display: none;">
@@ -80,126 +46,6 @@
     </div>
   </footer>
 
-  <script>
-    function showPaymentMethod(selectedRecipient) {
-      const paymentButtons = document.getElementById('paymentButtons');
-      paymentButtons.innerHTML = '';
-
-      switch (selectedRecipient) {
-        case 'dafidPalevi':
-          createPaymentButton('Dana', '0895638066066', 'dana', '0895638066066');
-          createPaymentButton('OVO', '-', 'ovo', '-');
-          createPaymentButton('BNI', 'Nomor BNI', 'bni', 'Nomor BNI');
-          createPaymentButton('BRI', 'Nomor BRI', 'bri', 'Nomor BRI');
-          createPaymentButton('BCA', 'Nomor BCA', 'bca', 'Nomor BCA');
-          createPaymentButton('MANDIRI', '1070016980189', 'mandiri', '1070016980189');
-          break;
-        case 'rezhaPohan':
-          createPaymentButton('BRI', '537201026360539', 'bri', '537201026360539');
-          createPaymentButton('BNI', '-', 'bni', '-');
-          break;
-        case 'masAri':
-          createPaymentButton('OVO', '-', 'ovo', '-');
-          createPaymentButton('BNI', '-', 'bni', '-');
-          break;  
-        case 'jonBusri':
-          createPaymentButton('BNI', '-', 'bni', '-');
-          createPaymentButton('OVO', '-', 'ovo', '-');
-          break;  
-        case 'pandy':
-          createPaymentButton('BCA', '-', 'bca', '-');
-          createPaymentButton('BNI', '-', 'bni', '-');
-          break;
-        case 'fadlan':
-          createPaymentButton('Mandiri', '-', 'mandiri', '-');
-          createPaymentButton('BNI', '-', 'bni', '-');
-          break;
-        // Add cases for other recipients as needed
-        default:
-          break;
-      }
-
-      // Display the payment method section
-      paymentMethodSection.style.display = 'block';
-      // Hide the back button and send THR button initially
-      document.getElementById('backButton').style.display = 'none';
-      document.getElementById('sendTHRButton').style.display = 'none';
-    }
-
-    function createPaymentButton(method, number, id, paymentNumber) {
-      const button = document.createElement('button');
-      button.textContent = method;
-      button.id = id + 'Payment'; // Set unique id for the button
-      button.addEventListener('click', () => {
-        if (method.toLowerCase() === 'dana' || method.toLowerCase() === 'ovo' || method.toLowerCase() === 'bni' || method.toLowerCase() === 'bri' || method.toLowerCase() === 'bca') {
-          // Show payment details
-          showPaymentDetails(method, paymentNumber);
-          // Hide other payment buttons and show Dana menu button
-          document.querySelectorAll('.buttons.payment-buttons button').forEach(btn => {
-            btn.style.display = 'none';
-          });
-          document.getElementById('backButton').style.display = 'inline-block';
-          document.getElementById('sendTHRButton').style.display = 'inline-block';
-        } else {
-          // If it's not one of the payment methods, it's Mandiri, so display its details
-          showPaymentDetails(method, number);
-          // Show the back button and hide the send THR button
-          document.getElementById('backButton').style.display = 'inline-block';
-          document.getElementById('sendTHRButton').style.display = 'inline-block';
-          // Hide other payment buttons
-          document.querySelectorAll('.buttons.payment-buttons button').forEach(btn => {
-            btn.style.display = 'none';
-          });
-        }
-      });
-      paymentButtons.appendChild(button);
-
-      // Create menu button for Dana
-      if (method.toLowerCase() === 'dana') {
-        const menuButton = document.createElement('button');
-        menuButton.textContent = 'Menu Dana';
-        menuButton.id = 'danaMenuButton';
-        menuButton.style.display = 'none';
-        menuButton.addEventListener('click', () => {
-          alert('Menu Dana');
-        });
-        paymentButtons.appendChild(menuButton);
-      }
-    }
-
-    function showPaymentDetails(method, number) {
-      const paymentDetailsContainer = document.getElementById('paymentDetailsContainer');
-      paymentDetailsContainer.innerHTML = `<p>Nomor ${method}: ${number}</p>`;
-    }
-
-    // Get the dropdown for THR recipients
-    const recipientDropdown = document.getElementById('recipientList');
-
-    // Add event listener when the selection in the dropdown changes
-    recipientDropdown.addEventListener('change', () => {
-      const selectedRecipient = recipientDropdown.value;
-      showPaymentMethod(selectedRecipient);
-    });
-
-    // Add event listener for the back button
-    document.getElementById('backButton').addEventListener('click', () => {
-      // Clear payment details
-      document.getElementById('paymentDetailsContainer').innerHTML = '';
-      // Hide the back button and send THR button
-      document.getElementById('backButton').style.display = 'none';
-      document.getElementById('sendTHRButton').style.display = 'none';
-      // Show payment buttons again
-      document.querySelectorAll('.buttons.payment-buttons button').forEach(btn => {
-        btn.style.display = 'inline-block';
-      });
-      // Hide Dana menu button
-      document.getElementById('danaMenuButton').style.display = 'none';
-    });
-
-    // Add event listener for the send THR button
-    document.getElementById('sendTHRButton').addEventListener('click', () => {
-      alert('THR telah berhasil dikirim!');
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
