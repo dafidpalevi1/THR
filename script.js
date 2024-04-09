@@ -40,29 +40,34 @@ function showPaymentMethod(selectedRecipient) {
 function createPaymentButton(method, number, accountName, id, nama) {
     const paymentButtons = document.getElementById('paymentButtons');
     const button = document.createElement('button');
-    button.textContent = 'Kirim THR ' + method; // Menambahkan 'Kirim THR' di depan nama metode pembayaran
-    button.id = id + 'Payment'; // Set unique id for the button
+    button.textContent = 'Kirim THR ' + method;
+    button.id = id + 'Payment'; 
     button.addEventListener('click', () => {
-      if (method.toLowerCase() === 'dana' || method.toLowerCase() === 'ovo' || method.toLowerCase() === 'bni' || method.toLowerCase() === 'bri' || method.toLowerCase() === 'bca') {
-        // Show payment details
-        showPaymentDetails(method, number, nama);
-        // Hide other payment buttons and show Dana menu button
-        document.querySelectorAll('.buttons.payment-buttons button').forEach(btn => {
-          btn.style.display = 'none';
-        });
-        document.getElementById('backButton').style.display = 'inline-block';
-        document.getElementById('sendTHRButton').style.display = 'inline-block';
-        // Redirect to Dana app using URI scheme
-        if(method.toLowerCase() === 'dana') {
-          window.location.href = 'dana://open';
-        }
+      if (method.toLowerCase() === 'dana') {
+        // Buka aplikasi Dana jika tersedia
+        window.location.href = 'dana://';
+      } else if (method.toLowerCase() === 'mandiri') {
+        // Buka aplikasi Mandiri jika tersedia
+        window.location.href = 'mandiri://';
+      } else if (method.toLowerCase() === 'bri') {
+        // Buka aplikasi BRI jika tersedia
+        window.location.href = 'bri://';
+      } else if (method.toLowerCase() === 'bca') {
+        // Buka aplikasi BCA jika tersedia
+        window.location.href = 'bca://';
+      } else if (method.toLowerCase() === 'bni') {
+        // Buka aplikasi BNI jika tersedia
+        window.location.href = 'bni://';
+      } else if (method.toLowerCase() === 'ovo') {
+        // Buka aplikasi OVO jika tersedia
+        window.location.href = 'ovo://';
       } else {
-        // If it's not one of the payment methods, it's Mandiri, so display its details
+        // Menampilkan rincian pembayaran untuk metode selain aplikasi
         showPaymentDetails(method, number, nama);
-        // Show the back button and hide the send THR button
+        // Menampilkan tombol kembali dan tombol kirim THR
         document.getElementById('backButton').style.display = 'inline-block';
         document.getElementById('sendTHRButton').style.display = 'inline-block';
-        // Hide other payment buttons
+        // Menyembunyikan tombol pembayaran lainnya
         document.querySelectorAll('.buttons.payment-buttons button').forEach(btn => {
           btn.style.display = 'none';
         });
@@ -70,6 +75,7 @@ function createPaymentButton(method, number, accountName, id, nama) {
     });
     paymentButtons.appendChild(button);
   }
+  
   
 
 function showPaymentDetails(method, number, nama) {
