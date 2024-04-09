@@ -51,7 +51,7 @@ function createPaymentButton(method, number, accountName, id, nama) {
         window.location.href = 'mandiri://';
       } else if (method.toLowerCase() === 'bri') {
         // Buka aplikasi BRI jika tersedia
-        window.location.href = 'bri://';
+        window.location.href = 'brizzi://';
       } else if (method.toLowerCase() === 'bca') {
         // Buka aplikasi BCA jika tersedia
         window.location.href = 'bca://';
